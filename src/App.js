@@ -17,6 +17,7 @@ const createAnecdote = (anecdote) => {
 
 const App = () => {
   const anecdotes = useSelector((state) => state);
+  anecdotes.sort((a, b) => b.votes - a.votes);
   const dispatch = useDispatch();
 
   const create = (event) => {
@@ -33,15 +34,17 @@ const App = () => {
   return (
     <div>
       <h2>Anecdotes</h2>
-      {anecdotes.map((anecdote) => (
-        <div key={anecdote.id}>
-          <div>{anecdote.content}</div>
-          <div>
-            has {anecdote.votes}
-            <button onClick={() => vote(anecdote.id)}>vote</button>
+      {anecdotes
+        .map((anecdote) => (
+          <div key={anecdote.id}>
+            <div>{anecdote.content}</div>
+            <div>
+              has {anecdote.votes}
+              <button onClick={() => vote(anecdote.id)}>vote</button>
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+        .sort((a, b) => a.votes - b.votes)}
       <h2>create new</h2>
       <form onSubmit={create}>
         <div>
