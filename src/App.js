@@ -1,19 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { asObject } from "./reducers/anecdoteReducer";
-
-const castVote = (id) => {
-  return {
-    type: "VOTE",
-    data: { id },
-  };
-};
-
-const createAnecdote = (anecdote) => {
-  return {
-    type: "NEW_ANECDOTE",
-    data: asObject(anecdote),
-  };
-};
+import { asObject, castVote, createAnecdote } from "./reducers/anecdoteReducer";
 
 const App = () => {
   const anecdotes = useSelector((state) => state);
