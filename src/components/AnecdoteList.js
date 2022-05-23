@@ -14,10 +14,10 @@ const AnecdoteList = () => {
     return anecdotes.filter((a) => a.content.includes(filter));
   });
 
-  const vote = (id) => {
+  const vote = async (id) => {
     const anecdote = anecdotes.find((a) => a.id === id);
+    dispatch(castVote(anecdote));
     dispatch(createNotification(`You voted for \'${anecdote.content}\'`));
-    dispatch(castVote(id));
     setTimeout(() => dispatch(removeNotification()), 5000);
   };
 
