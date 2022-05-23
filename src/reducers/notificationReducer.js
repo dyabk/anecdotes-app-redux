@@ -14,15 +14,19 @@ const notificationReducer = (state = initialState, action) => {
 };
 
 // action creators
-export const createNotification = (notification) => {
+export const createNotification = (content) => {
   return {
     type: "CREATE_NOTIFICATION",
-    notification,
+    notification: content,
   };
 };
 
 export const removeNotification = () => {
-  return { type: "REMOVE_NOTIFICATION" };
+  return async (dispatch) => {
+    dispatch({
+      type: "REMOVE_NOTIFICATION",
+    });
+  };
 };
 
 export default notificationReducer;
